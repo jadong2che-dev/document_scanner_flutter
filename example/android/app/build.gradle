@@ -54,6 +54,15 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libopencv_java3.so'
+        pickFirst 'lib/armeabi/libopencv_java3.so'
+        pickFirst 'lib/armeabi-v7a/libopencv_java3.so'
+        pickFirst 'lib/mips/libopencv_java3.so'
+        pickFirst 'lib/mips64/libopencv_java3.so'
+        pickFirst 'lib/x86/libopencv_java3.so'
+        pickFirst 'lib/x86_64/libopencv_java3.so'
+    }
 }
 
 flutter {
@@ -62,4 +71,12 @@ flutter {
 
 dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    modules {
+        module("org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
+            replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk7 is now part of kotlin-stdlib")
+        }
+        module("org.jetbrains.kotlin:kotlin-stdlib-jdk8") {
+            replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk8 is now part of kotlin-stdlib")
+        }
+    }
 }
